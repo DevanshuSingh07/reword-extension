@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "form test",
+  "version": "1.0",
+  "description": "Description of your extension",
+  "permissions": ["tabs", "activeTab","nativeMessaging","scripting"],
+  "action": {
+    "default_popup": "html/index.html",
+    "default_title": "Click to show an alert",
+    "default_icon": "logo1.png"
+  },
+ 
+  "background": {
+    "service_worker":"backgroundscript/backgroundpp.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["contentscript/content.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["./html/home.html", "home.js","./html/popup.html","./css/index.css",
+      "./css/popup.css"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+  
+}
